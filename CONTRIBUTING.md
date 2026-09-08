@@ -26,4 +26,4 @@ npm run dev
 
 ## Versionierung
 
-Wenn nur die Hub-Verpackung geaendert wird, erhoehe den `hub`-Suffix in `version.json`, zum Beispiel von `4.0.11-hub.1` auf `4.0.11-hub.2`.
+Wenn nur die Hub-Verpackung geaendert wird, erhoehe den `hub`-Suffix in `version.json`, zum Beispiel von `4.0.11-hub.2` auf `4.0.11-hub.3`.

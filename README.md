@@ -45,7 +45,7 @@ Die Upstream-Version bleibt in `package.json` erhalten. Die Modulversion in `ver
 
 ```json
 {
-  "version": "4.0.11-hub.1"
+  "version": "4.0.11-hub.2"
 }
 ```
 
