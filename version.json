@@ -1,0 +1,7 @@
+{
+  "version": "4.0.11-hub.1",
+  "name": "cryptii",
+  "description": "Modulare Konvertierung, Codierung und Verschluesselung direkt im Browser.",
+  "category": "tools",
+  "entry": "index.html"
+}

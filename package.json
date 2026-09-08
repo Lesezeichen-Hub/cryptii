@@ -1,22 +1,28 @@
 {
   "type": "module",
-  "name": "cryptii",
+  "name": "lesezeichen-hub-module-cryptii",
   "version": "4.0.11",
-  "description": "A web app for modular conversion, encoding, and encryption, all performed directly in your browser with no server interaction.",
+  "description": "cryptii packaged as a static module for Lesezeichen-Hub.",
   "author": "Fränz Friederes",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cryptii/cryptii.git"
+    "url": "https://github.com/Lesezeichen-Hub/cryptii.git"
   },
   "bugs": {
-    "url": "https://github.com/cryptii/cryptii/issues"
+    "url": "https://github.com/Lesezeichen-Hub/cryptii/issues"
   },
-  "homepage": "https://cryptii.com/",
+  "homepage": "https://github.com/Lesezeichen-Hub/cryptii",
   "license": "MIT",
+  "standard": {
+    "ignore": [
+      "web/"
+    ]
+  },
   "scripts": {
     "dev": "vite",
     "test": "standard && mocha",
     "build": "vite build",
+    "module:build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {

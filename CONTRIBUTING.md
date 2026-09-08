@@ -1,51 +1,29 @@
 # Contributing
 
-First off, thanks for taking the time to contribute!
+Dieses Repository ist die Lesezeichen-Hub-Modulverpackung von cryptii. Aenderungen sollten deshalb entweder die Hub-Integration betreffen oder nachvollziehbar aus dem Upstream-Projekt uebernommen werden.
 
-## Code of Conduct
+## Upstream
 
-This project and everyone participating in it is governed by the [Cryptii Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to hello@cryptii.com.
+Das originale Projekt liegt unter:
 
-## How to contribute
+```text
+https://github.com/cryptii/cryptii
+```
 
-### Reporting bugs or feature requests
+## Entwicklung
 
-Please follow these steps when creating an issue:
+```sh
+npm install
+npm run dev
+```
 
-1. Make sure your issue hasn't been [reported already](https://github.com/cryptii/cryptii/issues).
-2. Please don't report multiple unrelated bugs or requests in a single issue.
-3. If your issue has security implications please refer to the [security policy](SECURITY.md).
-4. Follow all instructions in the template.
-5. Include debug information obtained by pressing `Ctrl+I` inside the app if relevant.
+## Pull Requests
 
-### Pull Requests
+1. Nutze die Node-Version aus `.nvmrc`.
+2. Fuehre `npm test` aus.
+3. Fuehre `npm run module:build` aus.
+4. Committe die aktualisierten Dateien in `web/`, weil der Hub Module nicht selbst baut.
 
-Please follow these steps to have your contribution considered:
+## Versionierung
 
-1. Follow the [styleguides](#styleguides).
-2. Write tests for your changes.
-3. Successfully run `npm build`.
-4. Create a pull request and follow all instructions in the template.
-
-## Design Principles
-
-- Carefully design long-term brick setting interfaces and keep them backwards compatible. This makes sure saved pipes can be restored at a later date.
-- If at all possible, all operations and features should be client-side and not rely on connections to an external server.
-
-## Styleguides
-
-### Comments
-
-- Capitalize comments ("// Repeat translation" not "// repeat translation")
-
-### Git Commit Messages
-
-1. Capitalize the subject line
-2. Use the present tense ("Add feature" not "Added feature")
-3. Use the imperative mood ("Move cursor to…" not "Moves cursor to…")
-4. Do not end the subject line with a period
-5. Limit the first line to 72 characters or less
-
-### JavaScript Styleguide
-
-All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com/).
+Wenn nur die Hub-Verpackung geaendert wird, erhoehe den `hub`-Suffix in `version.json`, zum Beispiel von `4.0.11-hub.1` auf `4.0.11-hub.2`.

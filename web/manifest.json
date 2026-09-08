@@ -1,0 +1,28 @@
+{
+  "assets/fonts/roboto-v32-latin-500.woff2": {
+    "file": "assets/roboto-v32-latin-500-C6iW8rdg.woff2",
+    "src": "assets/fonts/roboto-v32-latin-500.woff2"
+  },
+  "assets/fonts/roboto-v32-latin-regular.woff2": {
+    "file": "assets/roboto-v32-latin-regular-DXyFPIdK.woff2",
+    "src": "assets/fonts/roboto-v32-latin-regular.woff2"
+  },
+  "assets/fonts/source-code-pro-v23-latin-regular.woff2": {
+    "file": "assets/source-code-pro-v23-latin-regular-BUJ3hEal.woff2",
+    "src": "assets/fonts/source-code-pro-v23-latin-regular.woff2"
+  },
+  "module.html": {
+    "file": "assets/module-D0kK6bBz.js",
+    "name": "module",
+    "src": "module.html",
+    "isEntry": true,
+    "css": [
+      "assets/module-BRhFX4Wq.css"
+    ],
+    "assets": [
+      "assets/source-code-pro-v23-latin-regular-BUJ3hEal.woff2",
+      "assets/roboto-v32-latin-regular-DXyFPIdK.woff2",
+      "assets/roboto-v32-latin-500-C6iW8rdg.woff2"
+    ]
+  }
+}
