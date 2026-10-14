@@ -5,8 +5,10 @@ import A1Z26Encoder from '../Encoder/A1Z26.js'
 import ADFGXCipherEncoder from '../Encoder/ADFGXCipher.js'
 import AffineCipherEncoder from '../Encoder/AffineCipher.js'
 import AlphabeticalSubstitutionEncoder from '../Encoder/AlphabeticalSubstitution.js'
+import ApacheMD5Encoder from '../Encoder/ApacheMD5.js'
 import Ascii85Encoder from '../Encoder/Ascii85.js'
 import BaconCipherEncoder from '../Encoder/BaconCipher.js'
+import BasicAuthEncoder from '../Encoder/BasicAuth.js'
 import Base32Encoder from '../Encoder/Base32.js'
 import Base64Encoder from '../Encoder/Base64.js'
 import BaudotCodeEncoder from '../Encoder/BaudotCode.js'
@@ -93,6 +95,7 @@ export default class BrickFactory extends Factory {
       // Encoding
       Base32Encoder,
       Base64Encoder,
+      BasicAuthEncoder,
       Ascii85Encoder,
       BaudotCodeEncoder,
       UnicodeCodePointsEncoder,
@@ -105,7 +108,8 @@ export default class BrickFactory extends Factory {
       BlockCipherEncoder,
       RC4Encoder,
       HashEncoder,
-      HMACEncoder
+      HMACEncoder,
+      ApacheMD5Encoder
     ]
 
     // Register each brick

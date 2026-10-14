@@ -38,23 +38,28 @@ export default class EncoderView extends BrickView {
       draggable: false
     }, 'Encode')
 
-    this._$decodeAction = View.createElement('a', {
-      className: 'brick__action',
-      href: '#',
-      onClick: this.actionDidClick.bind(this, 'decode'),
-      draggable: false
-    }, 'Decode')
+    const actions = [
+      View.createElement('li', {
+        className: 'brick__action-item'
+      }, this._$encodeAction)
+    ]
+
+    if (!this.getModel().isEncodeOnly()) {
+      this._$decodeAction = View.createElement('a', {
+        className: 'brick__action',
+        href: '#',
+        onClick: this.actionDidClick.bind(this, 'decode'),
+        draggable: false
+      }, 'Decode')
+
+      actions.push(View.createElement('li', {
+        className: 'brick__action-item'
+      }, this._$decodeAction))
+    }
 
     const $actions = View.createElement('ul', {
       className: 'brick__actions'
-    }, [
-      View.createElement('li', {
-        className: 'brick__action-item'
-      }, this._$encodeAction),
-      View.createElement('li', {
-        className: 'brick__action-item'
-      }, this._$decodeAction)
-    ])
+    }, actions)
 
     const $header = super.renderHeader()
     $header.insertBefore($actions, $header.firstChild)

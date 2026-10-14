@@ -4,6 +4,12 @@ Dieses Repository verpackt [cryptii](https://github.com/cryptii/cryptii) als sta
 
 Der Hub baut Module beim Installieren nicht selbst. Deshalb muss die gebaute Webapp im Repository committed sein. Der Hub startet ueber `index.html`; diese Datei leitet auf die gebaute App unter `web/module.html` weiter.
 
+## HTTP Basic Auth
+
+Der Encoder erwartet `username:password` und erzeugt den Headerwert `Basic <Base64>`. Beim Decodieren kann der komplette Headerwert oder nur der Base64-Token eingegeben werden. Basic Auth verwendet Base64-Kodierung, keine Verschluesselung; Zugangsdaten sollten daher ausschliesslich ueber HTTPS uebertragen werden.
+
+Der Encoder **Apache .htpasswd (APR1)** erwartet das Passwort als Inhalt und erzeugt eine vollstaendige `benutzer:$apr1$...`-Zeile. Nur der Benutzername ist einzugeben; ein zufaelliges Salt wird automatisch erzeugt und muss nicht bekannt sein. APR1 ist ein Legacy-Format zur Kompatibilitaet mit `.htpasswd`, kein moderner Passwortspeicher. Fuer neue Systeme bcrypt oder Argon2 verwenden.
+
 ## Entwicklung
 
 ```sh
