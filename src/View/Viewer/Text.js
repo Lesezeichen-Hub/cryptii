@@ -1,6 +1,8 @@
 import ViewerView from '../Viewer.js'
 import View from '../../View.js'
 
+const copyIconSvg = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1h8a1 1 0 0 1 1 1v10h-2V3H5V1zM3 4h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm0 2v7h7V6H3z"/></svg>'
+
 /**
  * Text viewer view
  */
@@ -13,6 +15,7 @@ export default class TextViewerView extends ViewerView {
     this._text = ''
     this._disabled = false
     this._$textarea = null
+    this._$copyButtonLabel = null
   }
 
   /**
@@ -96,9 +99,81 @@ export default class TextViewerView extends ViewerView {
       this._$textarea.disabled = 'disabled'
     }
 
+    const $copyButton = View.createElement('button', {
+      className: 'viewer-text__copy',
+      type: 'button',
+      ariaLabel: 'Copy to clipboard',
+      title: 'Copy to clipboard',
+      onClick: evt => this.copyTextToClipboard(evt)
+    }, [
+      View.createElement('span', {
+        className: 'viewer-text__copy-icon'
+      }),
+      this._$copyButtonLabel = View.createElement('span', {
+        className: 'viewer-text__copy-label'
+      }, 'Copy')
+    ])
+    $copyButton.firstChild.innerHTML = copyIconSvg
+
     const $content = super.renderContent()
     $content.appendChild(this._$textarea)
+    $content.appendChild($copyButton)
     return $content
+  }
+
+  /**
+   * Copies the visible text to the clipboard.
+   * @param {Event} evt
+   */
+  async copyTextToClipboard (evt) {
+    evt.preventDefault()
+    const $button = evt.currentTarget
+
+    try {
+      let copied = false
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(this._$textarea.value)
+          copied = true
+        } catch {}
+      }
+      if (!copied) copied = this.copyTextUsingFallback()
+      if (!copied) throw new Error('Copy failed')
+      this._$copyButtonLabel.innerText = 'Copied'
+      $button.setAttribute('aria-label', 'Copied to clipboard')
+      $button.setAttribute('title', 'Copied to clipboard')
+    } catch (error) {
+      this._$copyButtonLabel.innerText = 'Copy failed'
+      $button.setAttribute('aria-label', 'Copy to clipboard failed')
+      $button.setAttribute('title', 'Copy to clipboard failed')
+    }
+
+    window.setTimeout(() => {
+      this._$copyButtonLabel.innerText = 'Copy'
+      $button.setAttribute('aria-label', 'Copy to clipboard')
+      $button.setAttribute('title', 'Copy to clipboard')
+    }, 1500)
+  }
+
+  copyTextUsingFallback () {
+    const $activeElement = document.activeElement
+    const $temporaryTextarea = View.createElement('textarea', {
+      value: this._$textarea.value
+    })
+    $temporaryTextarea.setAttribute('readonly', '')
+    $temporaryTextarea.style.position = 'fixed'
+    $temporaryTextarea.style.left = '-9999px'
+    document.body.appendChild($temporaryTextarea)
+
+    let copied = false
+    try {
+      $temporaryTextarea.select()
+      copied = document.execCommand('copy')
+    } finally {
+      $temporaryTextarea.remove()
+      if ($activeElement) $activeElement.focus()
+    }
+    return copied
   }
 
   /**
