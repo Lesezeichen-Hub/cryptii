@@ -12,6 +12,7 @@ import BasicAuthEncoder from '../Encoder/BasicAuth.js'
 import Base32Encoder from '../Encoder/Base32.js'
 import Base64Encoder from '../Encoder/Base64.js'
 import BaudotCodeEncoder from '../Encoder/BaudotCode.js'
+import BCryptEncoder from '../Encoder/BCrypt.js'
 import BifidCipherEncoder from '../Encoder/BifidCipher.js'
 import BitwiseOperationEncoder from '../Encoder/BitwiseOperation.js'
 import BlockCipherEncoder from '../Encoder/BlockCipher.js'
@@ -109,7 +110,8 @@ export default class BrickFactory extends Factory {
       RC4Encoder,
       HashEncoder,
       HMACEncoder,
-      ApacheMD5Encoder
+      ApacheMD5Encoder,
+      BCryptEncoder
     ]
 
     // Register each brick
