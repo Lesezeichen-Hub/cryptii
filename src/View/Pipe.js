@@ -475,7 +475,8 @@ export default class PipeView extends View {
     super.layout()
 
     // Measure scroll max
-    this._scrollMax = this._$content.offsetWidth - this._$scrollable.offsetWidth
+    this._scrollMax = Math.max(0,
+      this._$content.scrollWidth - this._$scrollable.clientWidth)
 
     // Reset scroll position to respect new bounds
     this.scrollTo(this._scrollPosition)

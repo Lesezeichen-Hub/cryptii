@@ -26,6 +26,7 @@ $header-height: 96px !default;
   &__scrollable {
     position: relative;
     background: $c-pipe-background;
+    width: 100%;
 
     @include breakpoint(m, l) {
       flex-grow: 1;
@@ -70,6 +71,7 @@ $header-height: 96px !default;
       flex-direction: row;
       align-items: flex-start;
       float: left;
+      width: max-content;
       padding: $pipe-vertical-padding-m 48px;
       min-width: 100%;
 
