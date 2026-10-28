@@ -10,6 +10,10 @@ Der Encoder erwartet `username:password` und erzeugt den Headerwert `Basic <Base
 
 Der Encoder **Apache .htpasswd (APR1)** erwartet das Passwort als Inhalt und erzeugt eine vollstaendige `benutzer:$apr1$...`-Zeile. Nur der Benutzername ist einzugeben; ein zufaelliges Salt wird automatisch erzeugt und muss nicht bekannt sein. APR1 ist ein Legacy-Format zur Kompatibilitaet mit `.htpasswd`, kein moderner Passwortspeicher. Fuer neue Systeme bcrypt oder Argon2 verwenden.
 
+## Passwortgenerator
+
+Im Textfeld laesst sich **Password generator** aufklappen. Waehle eine Laenge von 1 bis 128 Zeichen sowie Kleinbuchstaben, Grossbuchstaben, Ziffern und/oder den Unterstrich `_` als einziges Sonderzeichen. **Generate password** ersetzt den Inhalt des Textfelds und aktualisiert die nachfolgenden Umwandlungen. Jede ausgewaehlte Zeichengruppe kommt mindestens einmal vor; die Laenge muss dafuer ausreichen. Standard sind 20 Zeichen mit allen vier Gruppen. Die Erzeugung erfolgt lokal mit der Web Crypto API, ohne unsicheren Zufalls-Fallback.
+
 ## Entwicklung
 
 ```sh
