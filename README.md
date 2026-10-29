@@ -18,7 +18,7 @@ bcrypt ist eine Einwegfunktion und kann nicht decodiert werden. Die Ausgabe enth
 
 ## Passwortgenerator
 
-Im Textfeld laesst sich **Password generator** aufklappen. Waehle eine Laenge von 1 bis 128 Zeichen sowie Kleinbuchstaben, Grossbuchstaben, Ziffern und/oder den Unterstrich `_` als einziges Sonderzeichen. **Generate password** ersetzt den Inhalt des Textfelds und aktualisiert die nachfolgenden Umwandlungen. Jede ausgewaehlte Zeichengruppe kommt mindestens einmal vor; die Laenge muss dafuer ausreichen. Standard sind 20 Zeichen mit allen vier Gruppen. Die Erzeugung erfolgt lokal mit der Web Crypto API, ohne unsicheren Zufalls-Fallback.
+Im Textfeld laesst sich **Password generator** aufklappen. Waehle eine Laenge von 1 bis 128 Zeichen sowie Kleinbuchstaben, Grossbuchstaben, Ziffern und einzeln die gewuenschten Sonderzeichen `_`, `-`, `!`, `@`, `#`, `$`, `%`, `&`, `*` und `?`. Standardmaessig ist nur `_` ausgewaehlt. **Generate password** ersetzt den Inhalt des Textfelds und aktualisiert die nachfolgenden Umwandlungen. Jede ausgewaehlte Zeichengruppe kommt mindestens einmal vor; die Laenge muss dafuer ausreichen. Standard sind 20 Zeichen mit Klein- und Grossbuchstaben, Ziffern und `_`. Die Erzeugung erfolgt lokal mit der Web Crypto API, ohne unsicheren Zufalls-Fallback.
 
 ## Entwicklung
 

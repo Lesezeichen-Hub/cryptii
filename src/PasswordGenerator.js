@@ -2,10 +2,21 @@ export const characterSets = {
   lowercase: 'abcdefghijklmnopqrstuvwxyz',
   uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   digits: '0123456789',
-  symbols: '_'
+  underscore: '_',
+  hyphen: '-',
+  exclamation: '!',
+  at: '@',
+  hash: '#',
+  dollar: '$',
+  percent: '%',
+  ampersand: '&',
+  asterisk: '*',
+  question: '?'
 }
 
-export default function generatePassword (length = 20, groups = Object.keys(characterSets)) {
+export const defaultGroups = ['lowercase', 'uppercase', 'digits', 'underscore']
+
+export default function generatePassword (length = 20, groups = defaultGroups) {
   if (!Number.isInteger(length) || length < 1 || length > 128) {
     throw new Error('Choose a password length between 1 and 128.')
   }

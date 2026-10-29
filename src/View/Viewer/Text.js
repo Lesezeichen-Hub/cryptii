@@ -1,6 +1,6 @@
 import ViewerView from '../Viewer.js'
 import View from '../../View.js'
-import generatePassword, { characterSets } from '../../PasswordGenerator.js'
+import generatePassword, { characterSets, defaultGroups } from '../../PasswordGenerator.js'
 
 const copyIconSvg = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1h8a1 1 0 0 1 1 1v10h-2V3H5V1zM3 4h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm0 2v7h7V6H3z"/></svg>'
 
@@ -143,11 +143,23 @@ export default class TextViewerView extends ViewerView {
       lowercase: 'Lowercase (a-z)',
       uppercase: 'Uppercase (A-Z)',
       digits: 'Digits (0-9)',
-      symbols: 'Symbols (_)'
+      underscore: 'Underscore (_)',
+      hyphen: 'Hyphen (-)',
+      exclamation: 'Exclamation mark (!)',
+      at: 'At sign (@)',
+      hash: 'Hash (#)',
+      dollar: 'Dollar sign ($)',
+      percent: 'Percent (%)',
+      ampersand: 'Ampersand (&)',
+      asterisk: 'Asterisk (*)',
+      question: 'Question mark (?)'
     }
     this._passwordGroups = Object.keys(characterSets).map(name => ({
       name,
-      $input: View.createElement('input', { type: 'checkbox', checked: true })
+      $input: View.createElement('input', {
+        type: 'checkbox',
+        checked: defaultGroups.includes(name)
+      })
     }))
     this._$passwordError = View.createElement('p', {
       className: 'viewer-text__password-error',

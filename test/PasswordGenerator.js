@@ -1,14 +1,14 @@
 import assert from 'assert'
 import { describe, it } from 'mocha'
-import generatePassword, { characterSets } from '../src/PasswordGenerator.js'
+import generatePassword, { characterSets, defaultGroups } from '../src/PasswordGenerator.js'
 
 describe('PasswordGenerator', () => {
   it('includes every selected group at the requested length', () => {
     for (const length of [4, 20, 128]) {
       const password = generatePassword(length)
       assert.strictEqual(password.length, length)
-      for (const characters of Object.values(characterSets)) {
-        assert.ok([...password].some(character => characters.includes(character)))
+      for (const group of defaultGroups) {
+        assert.ok([...password].some(character => characterSets[group].includes(character)))
       }
     }
   })
@@ -19,11 +19,25 @@ describe('PasswordGenerator', () => {
     assert.match(generatePassword(1, ['lowercase']), /^[a-z]$/)
   })
 
-  it('uses underscores as the only symbols', () => {
-    assert.strictEqual(generatePassword(20, ['symbols']), '_'.repeat(20))
+  it('keeps the existing default groups and offers ten selectable symbols', () => {
+    assert.deepStrictEqual(defaultGroups, ['lowercase', 'uppercase', 'digits', 'underscore'])
+    assert.deepStrictEqual(
+      Object.keys(characterSets).slice(3).map(group => characterSets[group]),
+      ['_', '-', '!', '@', '#', '$', '%', '&', '*', '?']
+    )
+    for (const group of Object.keys(characterSets).slice(3)) {
+      assert.strictEqual(generatePassword(20, [group]), characterSets[group].repeat(20))
+    }
+  })
+
+  it('includes only the individually selected symbols', () => {
     const password = generatePassword(128)
     assert.match(password, /^[a-zA-Z0-9_]{128}$/)
     assert.ok(password.includes('_'))
+    const selected = generatePassword(64, ['lowercase', 'hyphen', 'hash'])
+    assert.match(selected, /^[a-z#-]{64}$/)
+    assert.ok(selected.includes('#'))
+    assert.ok(selected.includes('-'))
   })
 
   it('rejects invalid lengths and selections', () => {
