@@ -44,6 +44,8 @@
       border: 1px solid $c-line;
       border-radius: 4px;
       background: transparent;
+      -moz-appearance: auto;
+      appearance: auto;
     }
   }
 

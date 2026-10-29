@@ -12,12 +12,12 @@
     "src": "assets/fonts/source-code-pro-v23-latin-regular.woff2"
   },
   "module.html": {
-    "file": "assets/module-Ak5_7gRy.js",
+    "file": "assets/module-CYFDVLwa.js",
     "name": "module",
     "src": "module.html",
     "isEntry": true,
     "css": [
-      "assets/module-B1zDi7JC.css"
+      "assets/module-uzPPxUBv.css"
     ],
     "assets": [
       "assets/source-code-pro-v23-latin-regular-BUJ3hEal.woff2",
