@@ -75,6 +75,30 @@
     }
   }
 
+  &__password-custom {
+    display: flex;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    input[type='text'] {
+      width: 64px;
+      min-width: 0;
+      padding: 4px 6px;
+      border: 1px solid $c-line;
+      border-radius: 4px;
+      background: transparent;
+    }
+  }
+
   &__password-error {
     overflow-wrap: anywhere;
   }

@@ -40,6 +40,14 @@ describe('PasswordGenerator', () => {
     assert.ok(selected.includes('-'))
   })
 
+  it('includes a single user-selected custom character', () => {
+    const password = generatePassword(20, ['lowercase', 'customCharacter'], '/')
+    assert.match(password, /^[a-z/]{20}$/)
+    assert.ok(password.includes('/'))
+    assert.strictEqual(generatePassword(1, ['customCharacter'], '/'), '/')
+    assert.match(generatePassword(8, ['customCharacter'], '🔐'), /^🔐{8}$/u)
+  })
+
   it('rejects invalid lengths and selections', () => {
     for (const length of [0, -1, 129, 1.5, NaN, '20']) {
       assert.throws(() => generatePassword(length), /length/i)
@@ -48,6 +56,8 @@ describe('PasswordGenerator', () => {
       assert.throws(() => generatePassword(20, groups), /group/i)
     }
     assert.throws(() => generatePassword(3), /each selected group/)
+    assert.throws(() => generatePassword(20, ['customCharacter']), /exactly one custom character/)
+    assert.throws(() => generatePassword(20, ['customCharacter'], 'ab'), /exactly one custom character/)
   })
 
   it('creates different passwords on repeated requests', () => {

@@ -161,6 +161,22 @@ export default class TextViewerView extends ViewerView {
         checked: defaultGroups.includes(name)
       })
     }))
+    const customCharacterGroup = {
+      name: 'customCharacter',
+      $input: View.createElement('input', { type: 'checkbox' })
+    }
+    this._passwordGroups.push(customCharacterGroup)
+    this._$customCharacter = View.createElement('input', {
+      type: 'text',
+      maxLength: 2,
+      ariaLabel: 'Custom character',
+      placeholder: '/',
+      onInput: evt => {
+        if (evt.currentTarget.value !== '') {
+          customCharacterGroup.$input.checked = true
+        }
+      }
+    })
     this._$passwordError = View.createElement('p', {
       className: 'viewer-text__password-error',
       role: 'alert',
@@ -186,10 +202,20 @@ export default class TextViewerView extends ViewerView {
           className: 'viewer-text__password-groups'
         }, [
           View.createElement('legend', {}, 'Characters'),
-          ...this._passwordGroups.map(group => View.createElement('label', {}, [
-            group.$input,
-            View.createElement('span', {}, labels[group.name])
-          ]))
+          ...this._passwordGroups.map(group => group.name === 'customCharacter'
+            ? View.createElement('div', {
+              className: 'viewer-text__password-custom'
+            }, [
+              View.createElement('label', {}, [
+                group.$input,
+                View.createElement('span', {}, 'Custom character')
+              ]),
+              this._$customCharacter
+            ])
+            : View.createElement('label', {}, [
+              group.$input,
+              View.createElement('span', {}, labels[group.name])
+            ]))
         ]),
         this._$passwordError,
         View.createElement('button', {
@@ -208,7 +234,11 @@ export default class TextViewerView extends ViewerView {
     try {
       const groups = this._passwordGroups.filter(group => group.$input.checked)
         .map(group => group.name)
-      const password = generatePassword(this._$passwordLength.valueAsNumber, groups)
+      const password = generatePassword(
+        this._$passwordLength.valueAsNumber,
+        groups,
+        this._$customCharacter.value
+      )
       this._$textarea.value = password
       this.textareaValueDidChange(evt)
       this._$passwordError.hidden = true
